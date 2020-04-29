@@ -13,6 +13,7 @@ const { Camera, Filesystem } = Plugins;
 export class PhotoService {
   private platform: Platform;
   searchObject: any;
+  loading = false;
 
   constructor(
     platform: Platform,
@@ -21,17 +22,23 @@ export class PhotoService {
     this.platform = platform;
   }
 
-  public async addNewToGallery() {
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 50
-    });
+  public async search() {
+    try {
+      const capturedPhoto = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        quality: 50
+      });
 
-    this.readAsBase64(capturedPhoto)
-      .then(data => {
-        this.consulta({ b64image: data });
-      }, err => console.error);
+      this.loading = true;
+
+      this.readAsBase64(capturedPhoto)
+        .then(data => {
+          this.consulta({ b64image: data });
+        }, err => console.error);
+    } catch (error) {
+      return error;
+    }
   }
 
   private async readAsBase64(cameraPhoto: CameraPhoto) {
@@ -62,6 +69,7 @@ export class PhotoService {
   consulta(file) {
     this.consultaCloud(file).subscribe(
       success => {
+        this.loading = false;
         this.searchObject = success;
       },
       error => {

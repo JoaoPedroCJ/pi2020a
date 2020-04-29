@@ -1,3 +1,17 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+.centerPage {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-spinner {
+  width: 100px !important;
+  height: 100px !important;
+}
