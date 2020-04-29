@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "app",
+  "appId": "br.com.nerdvana.pi2020a",
+  "appName": "reciclaki",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

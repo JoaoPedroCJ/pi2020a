@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  wvr: {
+    url: 'https://pi2020a.herokuapp.com/wvr'
+  }
 };

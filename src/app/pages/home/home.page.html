@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true">
+  <ion-grid *ngIf="photoService.searchObject">
+    <ion-row>
+      <ion-col size="12">
+        <ion-img [src]="photoService.searchObject.images[0].source_url"></ion-img>
+      </ion-col>
+      <ion-col size="12" *ngFor="let result of photoService.searchObject.images[0].classifiers[0].classes">
+        <ion-text>{{result.class}}</ion-text><br>
+        <ion-text>{{result.score}}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="photoService.addNewToGallery()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
